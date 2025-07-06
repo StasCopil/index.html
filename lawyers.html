@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Юридический отдел</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* Кастомные CSS переменные */
+
+:root {
+
+  --primary: #FC403A;           
+
+  --primary-dark: #d63531;      
+  
+  --secondary: #ff6b66;         
+
+  --accent: #FFFFFF;            
+
+  --bg-primary: #130909;        
+
+  --bg-secondary: #232326;      
+
+  --bg-card: rgba(252, 64, 58, 0.08); 
+
+  --text-primary: #FFFFFF;      
+
+  --text-secondary: #ffd9d8;    
+
+  --border: rgba(252, 64, 58, 0.15);
+
+  --black: #130909;             
+
+  --white: #FFFFFF;             
+
+}
+
+
+
+* {
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+}
+
+
+
+body, html {
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  background: #FFFFFF;
+
+  color: #130909;
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+}
+
+
+
+/* ОСНОВНЫЕ СТИЛИ ИЗ ОРИГИНАЛА */
+
+
+
+/* Плавная анимация загрузки страницы */
+
+@keyframes fadeInUp {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(30px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+
+/* Анимированный градиентный фон для body */
+
+body {
+
+  background: linear-gradient(135deg, #ffffff 0%, #fef7f7 50%, #ffffff 100%);
+
+  background-size: 400% 400%;
+
+  animation: subtleGradient 8s ease-in-out infinite;
+
+}
+
+
+
+@keyframes subtleGradient {
+
+  0%, 100% { background-position: 0% 50%; }
+
+  50% { background-position: 100% 50%; }
+
+}
+
+
+
+/* Улучшенные частицы с разными размерами и скоростями */
+
+.bg-particles {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+}
+
+
+
+.particle {
+
+  position: absolute;
+
+  background: var(--primary);
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  animation: improvedFloat 12s infinite linear;
+
+  box-shadow: 0 0 8px rgba(252, 64, 58, 0.6), 0 0 16px rgba(252, 64, 58, 0.3);
+
+}
+
+
+
+.particle:nth-child(odd) {
+
+  animation-duration: 10s;
+
+  background: linear-gradient(45deg, #FC403A, #ff6b66);
+
+}
+
+
+
+.particle:nth-child(3n) {
+
+  animation-duration: 14s;
+
+  width: 6px !important;
+
+  height: 6px !important;
+
+}
+
+
+
+@keyframes improvedFloat {
+
+  0% { 
+
+    transform: translateY(100vh) rotate(0deg) scale(0); 
+
+    opacity: 0; 
+
+  }
+
+  5% { 
+
+    opacity: 0.8;
+
+    transform: translateY(95vh) rotate(36deg) scale(1); 
+
+  }
+
+  95% { 
+
+    opacity: 0.8; 
+
+  }
+
+  100% { 
+
+    transform: translateY(-100px) rotate(720deg) scale(0); 
+
+    opacity: 0; 
+
+  }
+
+}
+
+
+
+/* Улучшенный хедер с glassmorphism эффектом */
+
+header {
+
+  backdrop-filter: blur(20px);
+
+  background: rgba(255, 255, 255, 0.95);
+
+  border-bottom: 1px solid rgba(252, 64, 58, 0.1);
+
+  box-shadow: 0 8px 32px rgba(252, 64, 58, 0.08);
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+  transition: all 0.3s ease;
+
+}
+
+
+
+/* Анимация появления карточек */
+
+.cards-grid-container {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 1.5rem;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 0 1rem;
+
+}
+
+
+
+.modern-card {
+
+  background: linear-gradient(135deg, #F20A0A, #FF8A70) !important;
+
+  color: #FFFFFF !important;
+
+  border: none;
+
+  border-radius: 24px;
+
+  padding: 2rem;
+
+  position: relative;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  box-shadow: 
+
+    0 8px 32px rgba(252, 64, 58, 0.15),
+
+    0 4px 16px rgba(252, 64, 58, 0.1);
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+
+  letter-spacing: 0.01em;
+
+  user-select: none;
+
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  animation: fadeInUp 0.6s ease forwards;
+
+  opacity: 0;
+
+}
+
+
+
+/* Задержка анимации для каждой карточки */
+
+.modern-card:nth-child(1) { animation-delay: 0.1s; }
+
+.modern-card:nth-child(2) { animation-delay: 0.2s; }
+
+.modern-card:nth-child(3) { animation-delay: 0.3s; }
+
+.modern-card:nth-child(4) { animation-delay: 0.4s; }
+
+.modern-card:nth-child(5) { animation-delay: 0.5s; }
+
+.modern-card:nth-child(6) { animation-delay: 0.6s; }
+
+.modern-card:nth-child(7) { animation-delay: 0.7s; }
+
+.modern-card:nth-child(8) { animation-delay: 0.8s; }
+
+.modern-card:nth-child(9) { animation-delay: 0.9s; }
+
+
+
+/* Улучшенные эффекты наведения */
+
+.modern-card::before {
+
+  display: none;
+
+}
+
+
+
+.modern-card:hover {
+
+  transform: translateY(-8px) scale(1.05);
+
+  box-shadow: 0 20px 40px rgba(252, 64, 58, 0.3);
+
+  background: #d63531 !important;
+
+}
+
+
+
+.modern-card:active {
+
+  transform: translateY(-2px) scale(0.95);
+
+  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+}
+
+
+
+/* Улучшенная анимация иконок */
+
+.gradient-icon {
+
+  width: 60px;
+
+  height: 60px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(20px);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0 auto 1rem;
+
+  position: relative;
+
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+}
+
+
+
+.modern-card:hover .gradient-icon {
+
+  transform: scale(1.1);
+
+  background: rgba(255, 255, 255, 0.3);
+
+}
+
+
+
+.gradient-icon img {
+
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  border-radius: 12px;
+
+}
+
+
+
+/* Пульсирующий эффект для заголовка */
+
+.animated-title {
+
+  display: inline-block;
+
+  background: linear-gradient(45deg, #FC403A, #ff6b66, #FC403A, #d63531);
+
+  background-size: 400% 400%;
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+
+  animation: 
+
+    titleGradient 6s ease-in-out infinite,
+
+    titlePulse 3s ease-in-out infinite alternate;
+
+  text-shadow: 0 0 30px rgba(252, 64, 58, 0.3);
+
+}
+
+
+
+@keyframes titleGradient {
+
+  0%, 100% { background-position: 0% 50%; }
+
+  50% { background-position: 100% 50%; }
+
+}
+
+
+
+@keyframes titlePulse {
+
+  0% { transform: scale(1); }
+
+  100% { transform: scale(1.01); }
+
+}
+
+
+
+/* Улучшенный логотип */
+
+.logo-container {
+
+  position: relative;
+
+  display: inline-block;
+
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  cursor: pointer;
+
+}
+
+
+
+.logo-image {
+
+  max-height: 48px;
+
+  width: auto;
+
+  border-radius: 12px;
+
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  filter: 
+
+    drop-shadow(0 4px 8px rgba(252, 64, 58, 0.2))
+
+    drop-shadow(0 0 16px rgba(252, 64, 58, 0.1));
+
+}
+
+
+
+.logo-container::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: -10px;
+
+  left: -10px;
+
+  right: -10px;
+
+  bottom: -10px;
+
+  background: linear-gradient(45deg, #FC403A, #ff6b66);
+
+  border-radius: 20px;
+
+  opacity: 0;
+
+  z-index: -1;
+
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+}
+
+
+
+.logo-container:hover::before {
+
+  opacity: 0.1;
+
+}
+
+
+
+.logo-container:hover {
+
+  transform: scale(1.1);
+
+}
+
+
+
+.logo-container:hover .logo-image {
+
+  filter: 
+
+    drop-shadow(0 8px 16px rgba(252, 64, 58, 0.35))
+
+    drop-shadow(0 0 24px rgba(252, 64, 58, 0.25));
+
+}
+
+
+
+/* Анимация текста */
+
+.modern-card h3,
+
+.modern-card p {
+
+  color: #FFFFFF !important;
+
+  font-family: inherit !important;
+
+  position: relative;
+
+  z-index: 1;
+
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+}
+
+
+
+.modern-card:hover h3 {
+
+  transform: translateY(-1px);
+
+}
+
+
+
+.modern-card:hover p {
+
+  transform: translateY(1px);
+
+}
+
+
+
+/* Улучшенный скролл */
+
+::-webkit-scrollbar {
+
+  width: 12px;
+
+}
+
+
+
+::-webkit-scrollbar-track {
+
+  background: linear-gradient(180deg, #f5f5f5, #f0f0f0);
+
+  border-radius: 6px;
+
+}
+
+
+
+::-webkit-scrollbar-thumb {
+
+  background: linear-gradient(135deg, #FC403A, #ff6b66);
+
+  border-radius: 6px;
+
+  border: 2px solid #f5f5f5;
+
+  transition: all 0.3s ease;
+
+}
+
+
+
+::-webkit-scrollbar-thumb:hover {
+
+  background: linear-gradient(135deg, #d63531, #FC403A);
+
+  transform: scale(1.1);
+
+}
+
+
+
+/* Остальные стили остаются прежними */
+
+#mainPage {
+
+  background: #FFFFFF;
+
+  color: #130909;
+
+}
+
+
+
+header h1,
+
+header p,
+
+#mainPage h2,
+
+#mainPage > div > div > p {
+
+  color: #130909 !important;
+
+}
+
+
+
+header h1 {
+
+  color: #FC403A !important;
+
+}
+
+
+
+.subtitle-text {
+
+  color: #666 !important;
+
+}
+
+
+
+.header-main-custom {
+
+  margin-bottom: 4rem !important;
+
+}
+
+
+
+@media (max-width: 1024px) {
+
+  .header-main-custom {
+
+    margin-bottom: 2rem !important;
+
+  }
+
+}
+
+
+
+@media (max-width: 768px) {
+
+  .header-main-custom {
+
+    margin-bottom: 1.5rem !important;
+
+  }
+
+}
+
+
+
+/* Стили для поисковой строки */
+
+.search-input {
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+
+  color: #130909;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  backdrop-filter: blur(10px);
+
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  text-align: center;
+
+}
+
+
+
+.search-input:focus {
+
+  border-color: #FC403A;
+
+  box-shadow: 0 0 0 3px rgba(252, 64, 58, 0.1);
+
+  background: rgba(255, 255, 255, 1);
+
+  text-align: left;
+
+}
+
+
+
+.search-input:not(:placeholder-shown) {
+
+  text-align: left;
+
+}
+
+
+
+.search-results {
+
+  background: rgba(255, 255, 255, 0.98);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(252, 64, 58, 0.1);
+
+  animation: fadeInDown 0.3s ease;
+
+}
+
+
+
+@keyframes fadeInDown {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(-10px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+
+.search-result-item {
+
+  padding: 12px 16px;
+
+  cursor: pointer;
+
+  border-bottom: 1px solid rgba(252, 64, 58, 0.05);
+
+  transition: all 0.2s ease;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+
+
+.search-result-item:hover {
+
+  background: rgba(252, 64, 58, 0.05);
+
+  transform: translateX(4px);
+
+}
+
+
+
+.search-result-item:last-child {
+
+  border-bottom: none;
+
+}
+
+
+
+.search-result-icon {
+
+  width: 32px;
+
+  height: 32px;
+
+  border-radius: 8px;
+
+  object-fit: cover;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.search-result-text {
+
+  flex: 1;
+
+}
+
+
+
+.search-result-title {
+
+  font-weight: 600;
+
+  color: #130909;
+
+  font-size: 0.9rem;
+
+  margin-bottom: 2px;
+
+}
+
+
+
+.search-result-description {
+
+  color: #666;
+
+  font-size: 0.8rem;
+
+  line-height: 1.3;
+
+}
+
+
+
+/* Секция избранное и недавние */
+
+.quick-access {
+
+  background: rgba(252, 64, 58, 0.03);
+
+  border-radius: 24px;
+
+  padding: 1.5rem;
+
+  margin-bottom: 2rem;
+
+  border: 1px solid rgba(252, 64, 58, 0.1);
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+
+.quick-access-title {
+
+  font-size: 1.1rem;
+
+  font-weight: 600;
+
+  color: #130909;
+
+  margin-bottom: 1rem;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+}
+
+
+
+.quick-access-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+  gap: 0.75rem;
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+
+
+.quick-access-item {
+
+  background: white;
+
+  border: 1px solid rgba(252, 64, 58, 0.1);
+
+  border-radius: 16px;
+
+  padding: 1rem;
+
+  cursor: pointer;
+
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+
+.quick-access-item:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 24px rgba(252, 64, 58, 0.15);
+
+  border-color: rgba(252, 64, 58, 0.3);
+
+}
+
+
+
+.quick-access-icon {
+
+  width: 32px;
+
+  height: 32px;
+
+  border-radius: 8px;
+
+  object-fit: cover;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.quick-access-text {
+
+  font-size: 0.85rem;
+
+  font-weight: 500;
+
+  color: #130909;
+
+  line-height: 1.2;
+
+}
+
+
+
+/* Индикатор внешней ссылки */
+
+.modern-card[data-external="true"]::after {
+
+  content: '↗';
+
+  position: absolute;
+
+  top: 1rem;
+
+  right: 1rem;
+
+  width: 24px;
+
+  height: 24px;
+
+  background: rgba(255, 255, 255, 0.2);
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 0.8rem;
+
+  font-weight: bold;
+
+}
+
+
+
+/* Прелоадер */
+
+.loading-indicator {
+
+  position: fixed;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 50px;
+
+  height: 50px;
+
+  border: 3px solid rgba(252, 64, 58, 0.1);
+
+  border-top-color: #FC403A;
+
+  border-radius: 50%;
+
+  animation: spin 0.8s linear infinite;
+
+  z-index: 9999;
+
+  display: none;
+
+  pointer-events: none;
+
+}
+
+
+
+@keyframes spin {
+
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+
+}
+
+
+
+/* Индикатор прогресса прокрутки */
+
+.scroll-progress {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  height: 3px;
+
+  width: 0;
+
+  background: linear-gradient(90deg, #FC403A, #ff6b66);
+
+  z-index: 101;
+
+  transition: width 0.2s ease;
+
+  box-shadow: 0 0 10px rgba(252, 64, 58, 0.5);
+
+}
+
+
+
+/* Мобильная адаптация с улучшенными анимациями */
+
+@media (max-width: 768px) {
+
+  .cards-grid-container {
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 0.5rem;
+
+    padding: 0 0.5rem;
+
+  }
+
+  
+
+  .modern-card {
+
+    padding: 0.75rem;
+
+    border-radius: 16px;
+
+    min-height: 110px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  }
+
+  
+
+  /* Упрощенные эффекты для мобильных */
+
+  .modern-card:hover {
+
+    transform: translateY(-2px) scale(1.01);
+
+    box-shadow: 0 6px 16px rgba(252, 64, 58, 0.15);
+
+  }
+
+  
+
+  .modern-card:active {
+
+    transform: scale(0.95);
+
+    transition: transform 0.15s ease;
+
+  }
+
+  
+
+  /* Отключаем сложные анимации на мобильных */
+
+  .modern-card::before {
+
+    display: none;
+
+  }
+
+  
+
+  .modern-card:hover .gradient-icon {
+
+    transform: scale(1.02);
+
+  }
+
+  
+
+  .modern-card h3 {
+
+    font-size: 0.75rem;
+
+    font-weight: 600;
+
+    margin-bottom: 0.25rem;
+
+    line-height: 1.1;
+
+  }
+
+  
+
+  .modern-card p {
+
+    font-size: 0.6rem;
+
+    line-height: 1.2;
+
+    opacity: 0.9;
+
+    overflow: hidden;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+  }
+
+  
+
+  .gradient-icon {
+
+    width: 30px;
+
+    height: 30px;
+
+    margin-bottom: 0.4rem;
+
+    border-radius: 8px;
+
+    transition: all 0.3s ease;
+
+  }
+
+  
+
+  .gradient-icon img {
+
+    width: 26px !important;
+
+    height: 26px !important;
+
+    border-radius: 6px;
+
+  }
+
+  
+
+  header h1 {
+
+    font-size: 1.1rem !important;
+
+  }
+
+  
+
+  .animated-title {
+
+    font-size: 1.8rem !important;
+
+    animation: titleGradient 6s ease-in-out infinite;
+
+  }
+
+  
+
+  .subtitle-text {
+
+    font-size: 0.85rem !important;
+
+    padding: 0 1rem;
+
+  }
+
+  
+
+  .particle {
+
+    width: 2px !important;
+
+    height: 2px !important;
+
+    animation-duration: 8s !important;
+
+  }
+
+  
+
+  .logo-image {
+
+    max-height: 40px !important;
+
+  }
+
+  
+
+  .cards-grid-container {
+
+    margin-top: 2rem;
+
+  }
+
+  
+
+  .quick-access {
+
+    padding: 1rem;
+
+    margin-bottom: 1.5rem;
+
+  }
+
+  
+
+  .quick-access-grid {
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 0.5rem;
+
+  }
+
+  
+
+  .quick-access-item {
+
+    padding: 0.75rem;
+
+    font-size: 0.8rem;
+
+  }
+
+  
+
+  .quick-access-icon {
+
+    width: 24px;
+
+    height: 24px;
+
+  }
+
+}
+
+
+
+@media (max-width: 480px) {
+
+  .cards-grid-container {
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 0.4rem;
+
+    padding: 0 0.4rem;
+
+  }
+
+  
+
+  .modern-card {
+
+    padding: 0.5rem;
+
+    min-height: 90px;
+
+    border-radius: 12px;
+
+  }
+
+  
+
+  .modern-card h3 {
+
+    font-size: 0.65rem;
+
+    margin-bottom: 0.2rem;
+
+    line-height: 1.0;
+
+  }
+
+  
+
+  .modern-card p {
+
+    font-size: 0.55rem;
+
+    line-height: 1.1;
+
+    -webkit-line-clamp: 2;
+
+  }
+
+  
+
+  .gradient-icon {
+
+    width: 24px;
+
+    height: 24px;
+
+    margin-bottom: 0.3rem;
+
+  }
+
+  
+
+  .gradient-icon img {
+
+    width: 20px !important;
+
+    height: 20px !important;
+
+    border-radius: 4px;
+
+  }
+
+  
+
+  .animated-title {
+
+    font-size: 1.5rem !important;
+
+  }
+
+}
+
+
+
+@media (hover: none) {
+
+  /* Отключаем hover эффекты на тач-устройствах */
+
+  .modern-card:hover,
+
+  .logo-container:hover {
+
+    transform: none;
+
+    box-shadow: initial;
+
+    background: #FC403A !important;
+
+  }
+
+  
+
+  /* Только эффекты нажатия - более заметные */
+
+  .modern-card:active {
+
+    transform: scale(0.92);
+
+    transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    background: #d63531 !important;
+
+  }
+
+  
+
+  .logo-container:active {
+
+    transform: scale(0.98);
+
+    transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  }
+
+  
+
+  /* Упрощенные анимации загрузки */
+
+  .modern-card {
+
+    animation: fadeInUpMobile 0.4s ease forwards;
+
+  }
+
+  
+
+  @keyframes fadeInUpMobile {
+
+    from {
+
+      opacity: 0;
+
+      transform: translateY(15px);
+
+    }
+
+    to {
+
+      opacity: 1;
+
+      transform: translateY(0);
+
+    }
+
+  }
+
+}
+
+
+
+/* Общие Tailwind классы */
+
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+
+.md\:py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+
+.max-w-7xl { max-width: 80rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.flex { display: flex; }
+
+.flex-col { flex-direction: column; }
+
+.items-center { align-items: center; }
+
+.justify-start { justify-content: flex-start; }
+
+.w-auto { width: auto; }
+
+.object-contain { object-fit: contain; }
+
+.text-center { text-align: center; }
+
+.mb-8 { margin-bottom: 2rem; }
+
+.mb-16 { margin-bottom: 4rem; }
+
+.mb-4 { margin-bottom: 1rem; }
+
+.mb-6 { margin-bottom: 1.5rem; }
+
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+
+.font-bold { font-weight: 700; }
+
+.max-w-2xl { max-width: 42rem; }
+
+.max-w-lg { max-width: 32rem; }
+
+.relative { position: relative; }
+
+.absolute { position: absolute; }
+
+.w-full { width: 100%; }
+
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+
+.rounded-2xl { border-radius: 1rem; }
+
+.bg-white { background-color: #ffffff; }
+
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+
+.inset-y-0 { top: 0; bottom: 0; }
+
+.right-0 { right: 0; }
+
+.pr-4 { padding-right: 1rem; }
+
+.w-5 { width: 1.25rem; }
+
+.h-5 { height: 1.25rem; }
+
+.text-gray-400 { color: #9ca3af; }
+
+.top-full { top: 100%; }
+
+.left-0 { left: 0; }
+
+.border { border-width: 1px; }
+
+.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+
+.mt-2 { margin-top: 0.5rem; }
+
+.max-h-60 { max-height: 15rem; }
+
+.overflow-y-auto { overflow-y: auto; }
+
+.z-50 { z-index: 50; }
+
+.group { position: relative; }
+
+.-translate-x-1\/2 { transform: translateX(-50%); }
+
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+
+.text-white { color: #ffffff; }
+
+.opacity-0 { opacity: 0; }
+
+.invisible { visibility: hidden; }
+
+.transition { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+
+
+
+/* Медиа-запросы */
+
+@media (min-width: 768px) {
+
+  .md\:py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+
+  .md\:mb-16 { margin-bottom: 4rem; }
+
+  .md\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+
+  .md\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+
+}
+
+
+
+@media (min-width: 1024px) {
+
+  .lg\:text-5xl { font-size: 3rem; line-height: 1; }
+
+}
+
+
+
+.tooltip {
+
+  background-color: #FC403A;
+
+  transition: all 0.3s ease;
+
+  white-space: nowrap;
+
+  z-index: 10;
+
+}
+
+
+
+.group:hover .tooltip {
+
+  opacity: 1;
+
+  visibility: visible;
+
+}
+</style>
+
+</head>
+
+
+
+<body>
+  
+
+  <!-- Прелоадер -->
+
+  <div class="loading-indicator" id="loadingIndicator"></div>
+
+  
+
+  <!-- Индикатор прогресса прокрутки -->
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+
+
+  <!-- Анимированные частицы фона -->
+
+  <div class="bg-particles" id="particles"></div>
+
+
+
+  <!-- Главная страница -->
+
+  <div id="mainPage" class="min-h-screen flex flex-col">
+
+
+
+    <!-- Хедер -->
+
+<header class="py-4 md:py-6 px-4 header-main-custom">
+  <div class="max-w-7xl mx-auto flex flex-col items-start">
+    
+    <!-- Логотип -->
+    <div class="logo-container mb-4">
+      <img src="https://i.postimg.cc/xTfKTV6w/image.png"
+           alt="Логотип"
+           class="logo-image w-auto object-contain" />
+    </div>
+
+    <!-- Кнопки под логотипом -->
+   
+  </div>
+</header>
+    <!-- Основной контент -->
+
+    <main class="flex-1 px-4">
+      <div class="max-w-7xl mx-auto">
+
+        <!-- Кнопки навигации по центру -->
+        <div class="flex items-center mt-8 mb-6" style="gap: 1rem;">
+          <button onclick="history.back()" class="flex items-center bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-5 rounded-xl shadow-md transition-all duration-200" style="font-size:1rem;">
+            <svg class="mr-2" width="20" height="20" fill="none" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+            Назад
+          </button>
+          <button onclick="window.location.href='index.html'" class="flex items-center bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-5 rounded-xl shadow-md transition-all duration-200" style="font-size:1rem;">
+            <svg class="mr-2" width="20" height="20" fill="none" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            Главная
+          </button>
+        </div>
+
+        <!-- Логотип по центру -->
+        <div class="flex justify-center mb-4">
+          <img
+            id="analyticsLogo"
+            src="https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg"
+            alt="Юридический отдел"
+            class="mx-auto"
+            style="display: block; max-height: 120px; border-radius: 12px; filter: drop-shadow(rgba(252, 64, 58, 0.25) 0px 8px 16px);"
+          >
+        </div>
+
+        <!-- Заголовок и подзаголовок -->
+        <div class="text-center mb-8">
+          <h1 class="text-2xl md:text-3xl font-bold mb-2">Юридический отдел</h1>
+          <div class="text-lg md:text-xl font-medium mb-2">Выберите раздел</div>
+        </div>
+
+        <!-- Сетка карточек -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center max-w-4xl mx-auto">
+          <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-6 rounded-2xl shadow-md text-lg transition-all duration-200">Договоры</button>
+          <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-6 rounded-2xl shadow-md text-lg transition-all duration-200">Судебная практика</button>
+          <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-6 rounded-2xl shadow-md text-lg transition-all duration-200">Консультации</button>
+          <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-6 rounded-2xl shadow-md text-lg transition-all duration-200">Экспертиза документов</button>
+          <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-6 rounded-2xl shadow-md text-lg transition-all duration-200">Внутренние регламенты</button>
+          <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-6 rounded-2xl shadow-md text-lg transition-all duration-200">Контакты юристов</button>
+        </div>
+
+      </div>
+    </main>
+
+
+
+    <!-- Футер -->
+
+    <footer class="py-8 text-center">
+
+      <p style="color: #666;">© 2025 Станислав Сизько. Все права защищены.</p>
+
+    </footer>
+
+  </div>
+
+
+
+  <script>
+
+    // Хранилище для недавних
+
+    let recentItems = [];
+
+
+
+    // Создание анимированных частиц (улучшенная версия)
+
+    function createParticles() {
+
+      const container = document.getElementById('particles');
+
+      container.innerHTML = ''; // Очищаем контейнер
+
+      
+
+      // Адаптивное количество частиц
+
+      const particleCount = window.innerWidth < 768 ? 15 : 30;
+
+      
+
+      for (let i = 0; i < particleCount; i++) {
+
+        const particle = document.createElement('div');
+
+        particle.className = 'particle';
+
+        
+
+        // Случайные позиции и параметры
+
+        particle.style.left = Math.random() * 100 + '%';
+
+        particle.style.animationDelay = Math.random() * 8 + 's';
+
+        particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+
+        
+
+        // Различные размеры частиц
+
+        const baseSize = window.innerWidth < 768 ? 2 : 3;
+
+        const size = Math.random() * baseSize + 2;
+
+        particle.style.width = size + 'px';
+
+        particle.style.height = size + 'px';
+
+        
+
+        container.appendChild(particle);
+
+      }
+
+    }
+
+
+
+    // Функция показа прелоадера
+
+    function showLoader() {
+
+      document.getElementById('loadingIndicator').style.display = 'block';
+
+    }
+
+
+
+    function hideLoader() {
+
+      document.getElementById('loadingIndicator').style.display = 'none';
+
+    }
+
+
+
+    // Функции для работы с недавними
+
+    function addToRecent(title) {
+
+      // Удаляем если уже есть
+
+      recentItems = recentItems.filter(item => item !== title);
+
+      // Добавляем в начало
+
+      recentItems.unshift(title);
+
+      // Ограничиваем количество
+
+      recentItems = recentItems.slice(0, 6);
+
+      updateQuickAccess();
+
+    }
+
+
+
+    // Обновление секции быстрого доступа
+
+    function updateQuickAccess() {
+
+      const quickAccessSection = document.getElementById('quickAccessSection');
+
+      const recentSection = document.getElementById('recentSection');
+
+      
+
+      // Показываем секцию если есть данные
+
+      if (recentItems.length > 0) {
+
+        quickAccessSection.style.display = 'block';
+
+        recentSection.style.display = 'block';
+
+        
+
+        const recentGrid = document.getElementById('recentGrid');
+
+        const iconMap = {
+
+          'Аналитика продаж': 'https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg',
+
+          'Файлы риелторов': 'https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg',
+
+          'Лидерство команд': 'https://i.postimg.cc/xXWqFvr7/Whats-App-Image-2025-06-30-at-11-50-13.jpg',
+
+          'HR Аналитика': 'https://i.postimg.cc/GBKwsRjQ/Whats-App-Image-2025-06-30-at-11-52-57.jpg',
+
+          'Отдел адаптации': 'https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg',
+
+          'Управление': 'https://i.postimg.cc/phKjB0pq/Whats-App-Image-2025-06-30-at-11-57-17.jpg',
+
+          'Отдел ипотеки': 'https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg',
+
+          'Юридический отдел': 'https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg',
+
+          'Информация': 'https://i.postimg.cc/mhBYZscD/Whats-App-Image-2025-06-30-at-12-06-17.jpg'
+
+        };
+
+        
+
+        recentGrid.innerHTML = recentItems.map(title => `
+
+          <div class="quick-access-item" onclick="handleCardClick('${title}')">
+
+            <img src="${iconMap[title]}" alt="${title}" class="quick-access-icon">
+
+            <span class="quick-access-text">${title}</span>
+
+          </div>
+
+        `).join('');
+
+      } else {
+
+        quickAccessSection.style.display = 'none';
+
+      }
+
+    }
+
+
+
+    // Расширенная база данных для поиска только по текущей странице
+
+    const globalSearchDatabase = [
+
+      // Основные разделы только с этой страницы
+
+      {
+
+        title: 'Аналитика продаж',
+
+        description: 'Системный анализ и автоматизация процессов продаж',
+
+        icon: 'https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg',
+
+        type: 'section',
+
+        keywords: ['аналитика', 'продажи', 'анализ', 'автоматизация', 'процессы', 'статистика', 'отчеты', 'метрики', 'kpi', 'показатели', 'воронка', 'конверсия', 'crm', 'система', 'данные']
+
+      },
+
+      {
+
+        title: 'Файлы риелторов',
+
+        description: 'Инструменты и шаблоны для эффективной работы',
+
+        icon: 'https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg',
+
+        type: 'section',
+
+        keywords: ['файлы', 'риелторы', 'инструменты', 'шаблоны', 'документы', 'формы', 'договоры', 'презентации', 'брошюры', 'материалы', 'контент', 'скрипты', 'переговоры']
+
+      },
+
+      {
+
+        title: 'Лидерство команд',
+
+        description: 'Формирование команд и развитие талантов',
+
+        icon: 'https://i.postimg.cc/xXWqFvr7/Whats-App-Image-2025-06-30-at-11-50-13.jpg',
+
+        type: 'section',
+
+        keywords: ['лидерство', 'команды', 'формирование', 'развитие', 'таланты', 'управление', 'мотивация', 'коучинг', 'наставничество', 'рост', 'карьера', 'навыки']
+
+      },
+
+      {
+
+        title: 'HR Аналитика',
+
+        description: 'Метрики персонала и глубокая аналитика',
+
+        icon: 'https://i.postimg.cc/GBKwsRjQ/Whats-App-Image-2025-06-30-at-11-52-57.jpg',
+
+        type: 'section',
+
+        keywords: ['hr', 'аналитика', 'персонал', 'метрики', 'кадры', 'сотрудники', 'статистика', 'эффективность', 'производительность', 'зарплата', 'премии', 'бонусы']
+
+      },
+
+      {
+
+        title: 'Отдел адаптации',
+
+        description: 'Адаптация и интеграция новых сотрудников',
+
+        icon: 'https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg',
+
+        type: 'section',
+
+        keywords: ['адаптация', 'интеграция', 'новые', 'сотрудники', 'обучение', 'ввод', 'онбординг', 'стажировка', 'испытательный', 'период', 'наставник']
+
+      },
+
+      {
+
+        title: 'Управление',
+
+        description: 'Организация и контроль всех процессов',
+
+        icon: 'https://i.postimg.cc/phKjB0pq/Whats-App-Image-2025-06-30-at-11-57-17.jpg',
+
+        type: 'section',
+
+        keywords: ['управление', 'организация', 'контроль', 'процессы', 'менеджмент', 'координация', 'планирование', 'стратегия', 'тактика', 'цели', 'задачи']
+
+      },
+
+      {
+
+        title: 'Отдел ипотеки',
+
+        description: 'Решения по ипотеке и кредитованию',
+
+        icon: 'https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg',
+
+        type: 'section',
+
+        keywords: ['ипотека', 'кредитование', 'займы', 'банки', 'финансы', 'недвижимость', 'сделки', 'документы', 'оформление', 'ставки', 'условия']
+
+      },
+
+      {
+
+        title: 'Юридический отдел',
+
+        description: 'Правовое сопровождение и экспертиза',
+
+        icon: 'https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg',
+
+        type: 'section',
+
+        keywords: ['юридический', 'правовое', 'сопровождение', 'экспертиза', 'закон', 'документы', 'консультации', 'договоры', 'суд', 'споры', 'права']
+
+      },
+
+      {
+
+        title: 'Информация',
+
+        description: 'Поддержка и управление корпоративными знаниями',
+
+        icon: 'https://i.postimg.cc/mhBYZscD/Whats-App-Image-2025-06-30-at-12-06-17.jpg',
+
+        type: 'section',
+
+        keywords: ['информация', 'поддержка', 'знания', 'корпоративные', 'база', 'данные', 'справочник', 'инструкции', 'помощь', 'документация']
+
+      }
+
+    ];
+
+
+
+    // Функция поиска строго по текущей странице
+
+    function searchTools(query) {
+
+      if (!query.trim()) return [];
+
+      
+
+      const searchTerm = query.toLowerCase().trim();
+
+      const results = globalSearchDatabase.filter(item => {
+
+        return item.title.toLowerCase().includes(searchTerm) ||
+
+               item.description.toLowerCase().includes(searchTerm) ||
+
+               item.keywords.some(keyword => keyword.includes(searchTerm));
+
+      });
+
+
+
+      // Сортировка результатов по релевантности
+
+      return results.sort((a, b) => {
+
+        // Приоритет точным совпадениям в названии
+
+        const aExactTitle = a.title.toLowerCase().includes(searchTerm);
+
+        const bExactTitle = b.title.toLowerCase().includes(searchTerm);
+
+        if (aExactTitle && !bExactTitle) return -1;
+
+        if (bExactTitle && !aExactTitle) return 1;
+
+        
+
+        // Приоритет точным совпадениям в начале названия
+
+        const aStartsWithTitle = a.title.toLowerCase().startsWith(searchTerm);
+
+        const bStartsWithTitle = b.title.toLowerCase().startsWith(searchTerm);
+
+        if (aStartsWithTitle && !bStartsWithTitle) return -1;
+
+        if (bStartsWithTitle && !aStartsWithTitle) return 1;
+
+        
+
+        return 0;
+
+      });
+
+    }
+
+
+
+    // Улучшенная функция отображения результатов
+
+    function displaySearchResults(results) {
+
+      const resultsContainer = document.getElementById('searchResults');
+
+      
+
+      if (results.length === 0) {
+
+        resultsContainer.style.display = 'none';
+
+        return;
+
+      }
+
+      
+
+      resultsContainer.innerHTML = '';
+
+      
+
+      // Функция создания элемента результата
+
+      function createResultItem(item, showParent = false) {
+
+        const resultItem = document.createElement('div');
+
+        resultItem.className = 'search-result-item';
+
+        
+
+        let iconHtml = '';
+
+        if (item.icon) {
+
+          iconHtml = `<img src="${item.icon}" alt="${item.title}" class="search-result-icon">`;
+
+        } else {
+
+          iconHtml = `<div class="search-result-icon" style="background: linear-gradient(135deg, #FC403A, #ff6b66); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">?</div>`;
+
+        }
+
+        
+
+        let parentText = '';
+
+        if (showParent && item.parent) {
+
+          parentText = `<div style="font-size: 0.7rem; color: #FC403A; margin-bottom: 2px;">${item.parent}</div>`;
+
+        }
+
+        
+
+        resultItem.innerHTML = `
+
+          ${iconHtml}
+
+          <div class="search-result-text">
+
+            ${parentText}
+
+            <div class="search-result-title">${item.title}</div>
+
+            <div class="search-result-description">${item.description}</div>
+
+          </div>
+
+        `;
+
+        
+
+        resultItem.addEventListener('click', () => {
+
+          handleSearchResultClick(item);
+
+        });
+
+        
+
+        return resultItem;
+
+      }
+
+      
+
+      // Добавление результатов
+
+      results.forEach(item => {
+
+        resultsContainer.appendChild(createResultItem(item));
+
+      });
+
+      
+
+      resultsContainer.style.display = 'block';
+
+    }
+
+
+
+    // Функция обработки клика по результату поиска
+
+    function handleSearchResultClick(item) {
+
+      const searchInput = document.getElementById('searchInput');
+
+      const searchResults = document.getElementById('searchResults');
+
+      
+
+      // Очистка поиска
+
+      searchInput.value = '';
+
+      searchResults.style.display = 'none';
+
+      
+
+      // Переход к разделу
+
+      handleCardClick(item.title);
+
+    }
+
+
+
+    // Функция прокрутки к найденной карточке
+
+    function scrollToCard(title) {
+
+      const cards = document.querySelectorAll('.modern-card');
+
+      cards.forEach(card => {
+
+        const cardTitle = card.querySelector('h3').textContent;
+
+        if (cardTitle === title) {
+
+          card.scrollIntoView({ 
+
+            behavior: 'smooth', 
+
+            block: 'center' 
+
+          });
+
+          
+
+          // Добавляем эффект выделения
+
+          card.style.transform = 'scale(1.05)';
+
+          card.style.boxShadow = '0 25px 50px rgba(252, 64, 58, 0.4)';
+
+          
+
+          setTimeout(() => {
+
+            card.style.transform = '';
+
+            card.style.boxShadow = '';
+
+          }, 2000);
+
+        }
+
+      });
+
+    }
+
+    function handleCardClick(title) {
+
+      // Добавляем визуальную обратную связь
+
+      showLoader();
+
+      
+
+      // Добавляем в недавние
+
+      addToRecent(title);
+
+      
+
+      // Здесь можно добавить логику навигации
+
+      setTimeout(() => {
+
+        hideLoader();
+
+        console.log('Переход к разделу:', title);
+
+        // Здесь будет логика перехода к подразделам
+
+      }, 500);
+
+    }
+
+
+
+    // Обновление индикатора прогресса прокрутки
+
+    function updateScrollProgress() {
+
+      const scrolled = window.scrollY;
+
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+
+      const progress = (scrolled / height) * 100;
+
+      document.getElementById('scrollProgress').style.width = progress + '%';
+
+    }
+
+
+
+    // Инициализация
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+      createParticles();
+
+      
+
+      // Инициализация поиска
+
+      const searchInput = document.getElementById('searchInput');
+
+      const searchResults = document.getElementById('searchResults');
+
+      
+
+      searchInput.addEventListener('input', function(e) {
+
+        const query = e.target.value;
+
+        const results = searchTools(query);
+
+        displaySearchResults(results);
+
+      });
+
+      
+
+      // Скрытие результатов при клике вне поиска
+
+      document.addEventListener('click', function(e) {
+
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+
+          searchResults.style.display = 'none';
+
+        }
+
+      });
+
+      
+
+      // Показ результатов при фокусе, если есть текст
+
+      searchInput.addEventListener('focus', function() {
+
+        if (this.value.trim()) {
+
+          const results = searchTools(this.value);
+
+          displaySearchResults(results);
+
+        }
+
+      });
+
+      
+
+      // Добавляем обработчики для карточек
+
+      const cards = document.querySelectorAll('.modern-card');
+
+      cards.forEach((card, index) => {
+
+        // Клик по карточке
+
+        card.addEventListener('click', function(e) {
+
+          // Добавляем визуальную обратную связь
+
+          this.style.transform = 'scale(0.96)';
+
+          setTimeout(() => {
+
+            this.style.transform = '';
+
+          }, 150);
+
+          
+
+          // Получаем заголовок из h3
+
+          const title = this.querySelector('h3').textContent;
+
+          
+
+          setTimeout(() => {
+
+            handleCardClick(title);
+
+          }, 200);
+
+        });
+
+        
+
+        // Добавляем легкий эффект при движении мыши (только для десктопа)
+
+        if (window.innerWidth > 1024 && window.matchMedia('(hover: hover)').matches) {
+
+          card.addEventListener('mousemove', function(e) {
+
+            const rect = this.getBoundingClientRect();
+
+            const x = e.clientX - rect.left;
+
+            const y = e.clientY - rect.top;
+
+            
+
+            const centerX = rect.width / 2;
+
+            const centerY = rect.height / 2;
+
+            
+
+            const rotateX = (y - centerY) / 30;
+
+            const rotateY = (centerX - x) / 30;
+
+            
+
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.02)`;
+
+          });
+
+          
+
+          card.addEventListener('mouseleave', function() {
+
+            this.style.transform = '';
+
+          });
+
+        }
+
+      });
+
+      
+
+      // Улучшенный параллакс эффект для частиц (только для десктопа)
+
+      if (window.innerWidth > 768) {
+
+        let mouseX = 0;
+
+        let mouseY = 0;
+
+        let currentX = 0;
+
+        let currentY = 0;
+
+        
+
+        document.addEventListener('mousemove', function(e) {
+
+          mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+
+          mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+        });
+
+        
+
+        function animateParticles() {
+
+          currentX += (mouseX - currentX) * 0.1;
+
+          currentY += (mouseY - currentY) * 0.1;
+
+          
+
+          const particles = document.querySelectorAll('.particle');
+
+          particles.forEach((particle, index) => {
+
+            const speed = (index % 5 + 1) * 0.5;
+
+            const x = currentX * speed * 10;
+
+            const y = currentY * speed * 10;
+
+            particle.style.transform = `translate(${x}px, ${y}px)`;
+
+          });
+
+          
+
+          requestAnimationFrame(animateParticles);
+
+        }
+
+        
+
+        animateParticles();
+
+      }
+
+      
+
+      // Пересоздание частиц при изменении размера экрана
+
+      let resizeTimeout;
+
+      window.addEventListener('resize', function() {
+
+        clearTimeout(resizeTimeout);
+
+        resizeTimeout = setTimeout(() => {
+
+          createParticles();
+
+        }, 250);
+
+      });
+
+      
+
+      // Добавляем обсервер для анимации карточек при прокрутке
+
+      const observerOptions = {
+
+        threshold: 0.1,
+
+        rootMargin: '0px 0px -50px 0px'
+
+      };
+
+      
+
+      const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.style.animationPlayState = 'running';
+
+          }
+
+        });
+
+      }, observerOptions);
+
+      
+
+      cards.forEach(card => {
+
+        observer.observe(card);
+
+      });
+
+      
+
+      // Обработчик прокрутки
+
+      window.addEventListener('scroll', function() {
+
+        updateScrollProgress();
+
+        
+
+        // Параллакс для заголовка
+
+        const scrolled = window.pageYOffset;
+
+        const parallax = document.querySelector('.animated-title');
+
+        if (parallax) {
+
+          const speed = scrolled * 0.2;
+
+          parallax.style.transform = `translateY(${speed}px)`;
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+  
+
+  <address style="text-align: center; font-style: normal;">
+
+    г.Ростов-на-Дону.,
+
+    пр-кт Шоллохова 22
+
+    344019
+
+  </address>
+
+
+
+</body>
+
+</html>
